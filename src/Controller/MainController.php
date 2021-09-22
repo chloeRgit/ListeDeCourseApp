@@ -55,8 +55,8 @@ class MainController extends AbstractController
      */
     public function itemachat(Item $item,EntityManagerInterface $em): Response
     {
-
-        $item->setStatus(true);
+        $value=($item ? false : true);
+        $item->setStatus($value);
         $em->flush();
         return $this->redirectToRoute('main');
     }
