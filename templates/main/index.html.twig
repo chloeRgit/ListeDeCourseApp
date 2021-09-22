@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Course{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row"  id="app">
+        <div class="offset-3 col-6">
+            <h1> Liste de courses</h1>
+            <br>
+
+            <div class="row-inline">
+                <div class="col-6">
+                    {{ form_start(formItem) }}
+                    <!--<input v-model="nom" class="form-control" >-->
+                    {{ form_row(formItem.title, {
+                        label: ' ',
+                        row_attr: {
+                            class: 'input-group'
+                        }
+                    }) }}
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                    {{ form_end(formItem) }}
+                </div>
+
+            </div>
+            <br>
+
+            <table class="table table-striped">
+                <thead>
+                <tr><th>Item</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                </thead>
+        <tbody>
+        {% for i in items %}
+
+        <tr {%  if i.status %} class="table-danger"{% endif %}>
+
+            <td {%  if i.status %} class="barre"{% endif %}>
+                {{ i.title }}
+            </td>
+            <td>
+                <button
+
+                        class="btn btn-primary">
+                    <a href="{{ path('itemachat',{id: i.id}) }}">
+                    <i class="fa fa-check"></i>
+                </button>
+                &nbsp;
+                <button
+
+                        class="btn btn-danger del">
+                    <a href="{{ path('itemdelete',{id: i.id}) }}">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+
+        {% endfor %}
+        </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+{% endblock %}
